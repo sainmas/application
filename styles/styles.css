@@ -1,6 +1,6 @@
-#content-container {
-    background: antiquewhite;
-}
 .quote {
     font-style: italic;
+}
+h2 {
+    margin-bottom: 15px;
 }
