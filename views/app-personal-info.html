@@ -1,0 +1,62 @@
+<!-- 328/application/views/app-personal-info.html  -->
+<include href="views/header.html"></include>
+<body class="bg-white">
+<include href="views/nav-bar.html"></include>
+
+<div class="container bg-light">
+    <br>
+    <h1>Personal Information</h1>
+    <hr class="hr">
+
+    <form action="#" method="post">
+        <div class="row">
+            <div class="mb-3 col-md-8">
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="first-name">First Name</label>
+                        <input type="text" class="form-control"  name="first-name" id="first-name"
+                            placeholder="Sarah">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" class="form-control" name="last-name" id="last-name"
+                            placeholder="Smith">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="user-email">Email</label>
+                    <input type="email" class="form-control" name="user-email" id="user-email"
+                        placeholder="my_email@gmail.com">
+                </div>
+            </div>
+            <div class="mb-3 col-md-4">
+                <div class="container bg-secondary-subtle rounded" >
+                    <br>
+                    <p><b>Note:</b> All information entered is protected by our <b>privacy policy.</b> Profile information can only be viewed by others with your permission.</p>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="user-state">State</label>
+                    <select id="user-state" class="form-select">
+                        <option selected value="washington">Washington</option>
+                        <option value="anything else">Anything else</option>
+                    </select>
+                </div>
+                <div class="mb-3 col-md-4">
+                    <label for="phone-num">Phone</label>
+                    <input type="text" class="form-control" name="phone-num" id="phone-num"
+                        placeholder="222-333-4444">
+                </div>
+                <div class="mb-3 col-md-4 d-grid">
+                    <br>
+                    <button type="submit" class="btn btn-outline-success">Next ></button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>
