@@ -42,7 +42,7 @@ $f3->route('GET|POST /apply1', function($f3) {
             $f3->set('SESSION.user-email', $email);
             $f3->set('SESSION.user-state', $state);
             $f3->set('SESSION.user-phone', $phone);
-            //Redirect to the summary route
+            //Redirect to the experience route
             $f3->reroute("apply2");
         }
     }
@@ -52,14 +52,44 @@ $f3->route('GET|POST /apply1', function($f3) {
 });
 
 // Define a route to apply2
-$f3->route('GET|POST /apply2', function() {
+$f3->route('GET|POST /apply2', function($f3) {
     session_start();
 
-    echo '<h1>Application Apply!</h1>';
+    //Check if the form has been posted
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $bio = $_POST['user-bio'];
+        $github = $_POST['user-github'];
+        $years = $_POST['user-years'];
+        $relocate = $_POST['user-relocate'];
+        //Validate the data
+        if (empty($bio) || empty($github) || empty($years) || empty($relocate)) {
+            //Data is invalid
+            echo "Please fill out the data";
+        } else {
+            //Data is valid
+            $f3->set('SESSION.user-bio', $bio);
+            $f3->set('SESSION.user-github', $github);
+            $f3->set('SESSION.user-years', $years);
+            $f3->set('SESSION.user-relocate', $relocate);
+            //Redirect to the experience route
+            $f3->reroute("apply3");
+        }
+    }
+
+    // Render a view page
+    $view = new Template();
+    echo $view->render('views/app-experience.html');
+});
+
+// Define a route to apply3
+$f3->route('GET|POST /apply3', function($f3) {
+    session_start();
+
+    echo "hey page 3";
 
     // Render a view page
     //$view = new Template();
-    //echo $view->render('views/app-personal-info.html');
+    //echo $view->render('views/app-experience.html');
 });
 
 // Run Fat-Free

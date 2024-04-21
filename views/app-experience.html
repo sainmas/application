@@ -1,0 +1,64 @@
+<!-- 328/application/views/app-experience.html  -->
+<include href="views/header.html"></include>
+<body class="bg-white">
+<include href="views/nav-bar.html"></include>
+
+<div class="container bg-light">
+    <br>
+    <h1>Experience</h1>
+    <hr class="hr">
+
+    <form action="#" method="post">
+        <div class="row">
+            <div class="mb-3 col-md-8">
+                <div class="col-auto">
+                    <label for="user-bio">Biography</label>
+                    <textarea rows="10" class="form-control"  name="user-bio" id="user-bio"
+                              placeholder="Speak up, don't be shy!"></textarea>
+                </div>
+            </div>
+            <div class="mb-3 col-md-4">
+                <div class="mb-3">
+                    <label for="user-github">Github link</label>
+                    <input type="text" class="form-control"  name="user-github" id="user-github"
+                           placeholder="github.com/my_github">
+                </div>
+                <fieldset class="mb-3">
+                    <legend class="col-form-label">Years Experience</legend>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="user-years" id="years1" value="0-2">
+                        <label class="form-check-label" for="years1">0-2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="user-years" id="years2" value="2-4">
+                        <label class="form-check-label" for="years2">2-4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="user-years" id="years3" value="4+">
+                        <label class="form-check-label" for="years3">4+</label>
+                    </div>
+                </fieldset>
+                <fieldset class="mb-3">
+                    <legend class="col-form-label">Willing to Relocate</legend>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="user-relocate" id="relocate1" value="yes">
+                        <label class="form-check-label" for="years1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="user-relocate" id="relocate2" value="no">
+                        <label class="form-check-label" for="years2">No</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="user-relocate" id="relocate3" value="maybe">
+                        <label class="form-check-label" for="years3">Maybe</label>
+                    </div>
+                </fieldset>
+                <div class="mb-3 d-grid">
+                    <button type="submit" class="btn btn-outline-success">Next ></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
