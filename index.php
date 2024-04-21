@@ -71,7 +71,7 @@ $f3->route('GET|POST /apply2', function($f3) {
             $f3->set('SESSION.user-github', $github);
             $f3->set('SESSION.user-years', $years);
             $f3->set('SESSION.user-relocate', $relocate);
-            //Redirect to the experience route
+            //Redirect to the mailing route
             $f3->reroute("apply3");
         }
     }
@@ -85,8 +85,68 @@ $f3->route('GET|POST /apply2', function($f3) {
 $f3->route('GET|POST /apply3', function($f3) {
     session_start();
 
-    echo "hey page 3";
 
+    //Check if the form has been posted
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        //Set up mailings
+        $jobmailings = "";
+        $vertmailings = "";
+        for ($i = 1; $i < 9; $i++) {
+            $jmailing = $_POST["user-job$i"];
+            $vmailing = $_POST["user-verticals$i"];
+            if(!empty($jmailing)) {
+                if($jobmailings === "") {
+                    $jobmailings = $jmailing;
+                } else {
+                    $jobmailings = $jobmailings . ", " . $jmailing;
+                }
+            }
+            if(!empty($vmailing)) {
+                if($vertmailings === "") {
+                    $vertmailings = $vmailing;
+                } else {
+                    $vertmailings = $vertmailings . ", " . $vmailing;
+                }
+            }
+        }
+
+        //Combine the mailings
+        if($jobmailings === "") {
+            if($vertmailings === "") {
+                $combinemailings = "";
+            } else {
+                $combinemailings = $vertmailings;
+            }
+        } else if ($vertmailings === "") {
+            $combinemailings = $jobmailings;
+        } else {
+            $combinemailings = $jobmailings . ", " . $vertmailings;
+        }
+
+        //Validate the data
+        if ($combinemailings === "") {
+            //Data is invalid
+            echo "Please fill a mailing";
+        } else {
+            //Data is valid
+            $f3->set('SESSION.user-mailings', $combinemailings);
+            //echo $combinemailings;
+            //Redirect to the summary route
+            $f3->reroute("summary");
+        }
+    }
+
+    // Render a view page
+    $view = new Template();
+    echo $view->render('views/app-mailing.html');
+});
+
+// Define a route to summary
+$f3->route('GET|POST /summary', function($f3) {
+    session_start();
+
+    echo "yay u madeit!";
     // Render a view page
     //$view = new Template();
     //echo $view->render('views/app-experience.html');
