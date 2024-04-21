@@ -21,5 +21,14 @@ $f3->route('GET /', function() {
     echo $view->render('views/home.html');
 });
 
+// Define a default route
+$f3->route('GET|POST /apply1', function() {
+    echo '<h1>Application Apply!</h1>';
+
+    // Render a view page
+    //$view = new Template();
+    //echo $view->render('views/home.html');
+});
+
 // Run Fat-Free
 $f3->run();
