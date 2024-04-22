@@ -4,3 +4,13 @@
 h3 {
     margin-bottom: 15px;
 }
+.light-border {
+    border: 1px black;
+}
+.bi-person {
+    width: 2em;
+    height: 2em;
+}
+th {
+    font-weight: normal;
+}

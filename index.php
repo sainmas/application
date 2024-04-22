@@ -32,16 +32,16 @@ $f3->route('GET|POST /apply1', function($f3) {
         $state = $_POST['user-state'];
         $phone = $_POST['phone-num'];
         //Validate the data
-        if (empty($fname) || empty($lname) || empty($email) || empty($phone)) {
+        if (empty($fname) || empty($lname) || empty($email) || empty($phone) || empty($state)) {
             //Data is invalid
             echo "Please fill out the data";
         } else {
             //Data is valid
-            $f3->set('SESSION.user-first-name', $fname);
-            $f3->set('SESSION.user-last-name', $lname);
-            $f3->set('SESSION.user-email', $email);
-            $f3->set('SESSION.user-state', $state);
-            $f3->set('SESSION.user-phone', $phone);
+            $f3->set('SESSION.userFirstName', $fname);
+            $f3->set('SESSION.userLastName', $lname);
+            $f3->set('SESSION.userEmail', $email);
+            $f3->set('SESSION.userState', $state);
+            $f3->set('SESSION.userPhone', $phone);
             //Redirect to the experience route
             $f3->reroute("apply2");
         }
@@ -67,10 +67,10 @@ $f3->route('GET|POST /apply2', function($f3) {
             echo "Please fill out the data";
         } else {
             //Data is valid
-            $f3->set('SESSION.user-bio', $bio);
-            $f3->set('SESSION.user-github', $github);
-            $f3->set('SESSION.user-years', $years);
-            $f3->set('SESSION.user-relocate', $relocate);
+            $f3->set('SESSION.userBio', $bio);
+            $f3->set('SESSION.userGithub', $github);
+            $f3->set('SESSION.userYears', $years);
+            $f3->set('SESSION.userRelocate', $relocate);
             //Redirect to the mailing route
             $f3->reroute("apply3");
         }
@@ -130,7 +130,7 @@ $f3->route('GET|POST /apply3', function($f3) {
             echo "Please fill a mailing";
         } else {
             //Data is valid
-            $f3->set('SESSION.user-mailings', $combinemailings);
+            $f3->set('SESSION.userMailings', $combinemailings);
             //echo $combinemailings;
             //Redirect to the summary route
             $f3->reroute("summary");
@@ -145,11 +145,10 @@ $f3->route('GET|POST /apply3', function($f3) {
 // Define a route to summary
 $f3->route('GET|POST /summary', function($f3) {
     session_start();
-
-    echo "yay u madeit!";
+    //echo "yay u madeit!";
     // Render a view page
-    //$view = new Template();
-    //echo $view->render('views/app-experience.html');
+    $view = new Template();
+    echo $view->render('views/app-summary.html');
 });
 
 // Run Fat-Free
