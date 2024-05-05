@@ -9,11 +9,13 @@ function validName($name) {
 }
 
 //uses FILTER_VALIDATE_URL to make sure it real github
-function validGithub() {
+function validGithub($github) {
+    return filter_var(trim($github), FILTER_VALIDATE_URL);
 }
 
 //checks if above 20 characters
-function validExperience() {
+function validExperience($years) {
+    return in_array($years, getYears());
 }
 
 //checks if phone number above 9 characters and bellow 12

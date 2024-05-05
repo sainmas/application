@@ -25,33 +25,24 @@
                 </div>
                 <fieldset class="mb-3">
                     <legend class="col-form-label">Years Experience</legend>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="user-years" id="years1" value="0-2">
-                        <label class="form-check-label" for="years1">0-2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="user-years" id="years2" value="2-4">
-                        <label class="form-check-label" for="years2">2-4</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="user-years" id="years3" value="4+">
-                        <label class="form-check-label" for="years3">4+</label>
-                    </div>
+                    <repeat group="{{ @years }}" value="{{ @year }}">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="user-years" id="{{ @year }}" value="{{ @year }}">
+                            <label class="form-check-label" for="{{ @year }}">{{ @year }}</label>
+                        </div>
+                    </repeat>
                 </fieldset>
+                <check if="{{ isset(@errors['userYears']) }}">
+                    <span class="err">{{ @errors['userYears'] }}</span>
+                </check>
                 <fieldset class="mb-3">
                     <legend class="col-form-label">Willing to Relocate</legend>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="user-relocate" id="relocate1" value="Yes">
-                        <label class="form-check-label" for="relocate1">Yes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="user-relocate" id="relocate2" value="No">
-                        <label class="form-check-label" for="relocate2">No</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="user-relocate" id="relocate3" value="Maybe">
-                        <label class="form-check-label" for="relocate3">Maybe</label>
-                    </div>
+                    <repeat group="{{ @relocate }}" value="{{ @relocateSelect }}">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="user-relocate" id="{{ @relocateSelect }}" value="{{ @relocateSelect }}">
+                            <label class="form-check-label" for="{{ @relocateSelect }}">{{ @relocateSelect }}</label>
+                        </div>
+                    </repeat>
                 </fieldset>
                 <div class="mb-3 d-grid">
                     <button type="submit" class="btn btn-outline-success">Next ></button>
