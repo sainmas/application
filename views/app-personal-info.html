@@ -16,17 +16,26 @@
                         <label for="first-name">First Name</label>
                         <input type="text" class="form-control"  name="first-name" id="first-name"
                             placeholder="Sarah">
+                        <check if="{{ isset(@errors['userFName']) }}">
+                            <span class="err">{{ @errors['userFName'] }}</span>
+                        </check>
                     </div>
                     <div class="mb-3 col-md-6">
                         <label for="last-name">Last Name</label>
                         <input type="text" class="form-control" name="last-name" id="last-name"
                             placeholder="Smith">
+                        <check if="{{ isset(@errors['userLName']) }}">
+                            <span class="err">{{ @errors['userLName'] }}</span>
+                        </check>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="user-email">Email</label>
                     <input type="email" class="form-control" name="user-email" id="user-email"
                         placeholder="my_email@gmail.com">
+                    <check if="{{ isset(@errors['userEmail']) }}">
+                        <span class="err">{{ @errors['userEmail'] }}</span>
+                    </check>
                 </div>
             </div>
             <div class="mb-3 col-md-4">
@@ -45,9 +54,12 @@
                     </select>
                 </div>
                 <div class="mb-3 col-md-4">
-                    <label for="phone-num">Phone</label>
+                    <label for="phone-num">Phone (only the numbers)</label>
                     <input type="text" class="form-control" name="phone-num" id="phone-num"
-                        placeholder="222-333-4444">
+                        placeholder="2223334444">
+                    <check if="{{ isset(@errors['userPhone']) }}">
+                        <span class="err">{{ @errors['userPhone'] }}</span>
+                    </check>
                 </div>
                 <div class="mb-3 col-md-4 d-grid">
                     <br>
