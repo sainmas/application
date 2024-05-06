@@ -27,3 +27,27 @@ function validPhone($phone) {
 function validEmail($email) {
     return filter_var(trim($email), FILTER_VALIDATE_EMAIL);
 }
+
+
+/**
+ * Extracts the mailing from the jobs provided and checks if it's provided from the data-layer
+ * @param array $jobs array gotten from data-layer, loop over
+ * @return mixed|string Combined mailing with commas between each of them
+ */
+function getMailing(array $jobs)
+{
+    $mailings = "";
+    foreach ($jobs as $job) {
+        $dashJob = str_replace(" ", "_", "$job");
+        $mail = $_POST[$dashJob];
+        //checks if not empty and in the array provided from data-layer
+        if (!empty($mail) && in_array($mail, $jobs)) {
+            if ($mailings === "") {
+                $mailings = $mail;
+            } else {
+                $mailings = $mailings . ", " . $mail;
+            }
+        }
+    }
+    return $mailings;
+}

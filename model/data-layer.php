@@ -13,3 +13,13 @@ function getYears() {
 function getRelocate() {
     return array('Yes', 'No', 'Maybe');
 }
+
+//returns the options for software jobs
+function getSoftwareJobs() {
+    return array('Javascript', 'PHP', 'Java', 'Python', 'HTML', 'CSS', 'ReactJS', 'NodeJS');
+}
+
+//returns the options for industry verticals
+function getIndustryVerticals() {
+    return array('SaaS', 'Health tech', 'Ag tech', 'HR tech', 'Industrial Tech', 'Cybersecurity');
+}

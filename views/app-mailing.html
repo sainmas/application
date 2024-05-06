@@ -12,65 +12,21 @@
         <div class="row">
             <fieldset class="mb-3">
                 <legend class="col-form-label">Software Development Jobs</legend>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-job1" id="jobs1" value="Javascript">
-                    <label class="form-check-label" for="jobs1">Javascript</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-job2" id="jobs2" value="PHP">
-                    <label class="form-check-label" for="jobs2">PHP</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-job3" id="jobs3" value="Java">
-                    <label class="form-check-label" for="jobs3">Java</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-job4" id="jobs4" value="Python">
-                    <label class="form-check-label" for="jobs4">Python</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-job5" id="jobs5" value="HTML">
-                    <label class="form-check-label" for="jobs5">HTML</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-job6" id="jobs6" value="CSS">
-                    <label class="form-check-label" for="jobs6">CSS</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-job7" id="jobs7" value="ReactJD">
-                    <label class="form-check-label" for="jobs7">ReactJS</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-job8" id="jobs8" value="NodeJS">
-                    <label class="form-check-label" for="jobs8">NodeJS</label>
-                </div>
+                <repeat group="{{ @jobs }}" value="{{ @job }}">
+                    <div class="form-check form-check-inline col-2">
+                        <input class="form-check-input" type="checkbox" name="{{ @job }}" id="{{ @job }}" value="{{ @job }}">
+                        <label class="form-check-label" for="{{ @job }}">{{ @job }}</label>
+                    </div>
+                </repeat>
             </fieldset>
             <fieldset class="mb-3">
                 <legend class="col-form-label">Industry Verticals</legend>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-verticals1" id="vert1" value="SaaS">
-                    <label class="form-check-label" for="vert1">SaaS</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-verticals2" id="vert2" value="Health Tech">
-                    <label class="form-check-label" for="vert2">Health tech</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-verticals3" id="vert3" value="AG Tech">
-                    <label class="form-check-label" for="vert3">Ag tech</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-verticals4" id="vert4" value="HR Tech">
-                    <label class="form-check-label" for="vert4">HR tech</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-verticals5" id="vert5" value="Industrial Tech">
-                    <label class="form-check-label" for="vert5">Industrial Tech</label>
-                </div>
-                <div class="form-check form-check-inline col-2">
-                    <input class="form-check-input" type="checkbox" name="user-verticals6" id="vert6" value="Cybersecurty">
-                    <label class="form-check-label" for="vert6">Cybersecurity</label>
-                </div>
+                <repeat group="{{ @industryVerticals }}" value="{{ @industryVertical }}">
+                    <div class="form-check form-check-inline col-2">
+                        <input class="form-check-input" type="checkbox" name="{{ @industryVertical }}" id="{{ @industryVertical }}" value="{{ @industryVertical }}">
+                        <label class="form-check-label" for="{{ @industryVertical }}">{{ @industryVertical }}</label>
+                    </div>
+                </repeat>
             </fieldset>
 
         </div>

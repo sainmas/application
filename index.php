@@ -125,66 +125,46 @@ $f3->route('GET|POST /apply2', function($f3) {
     echo $view->render('views/app-experience.html');
 });
 
+
 // Define a route to apply3
 $f3->route('GET|POST /apply3', function($f3) {
     session_start();
 
+    // Get the data from the model
+    // add it to the F3 hive
+    $softwareJobs = getSoftwareJobs();
+    $f3->set('jobs', $softwareJobs);
+    $industryVerticals = getIndustryVerticals();
+    $f3->set('industryVerticals', $industryVerticals);
 
     //Check if the form has been posted
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        //Set up mailings
-        $jobmailings = "";
-        $vertmailings = "";
-        for ($i = 1; $i < 9; $i++) {
-            $jmailing = $_POST["user-job$i"];
-            $vmailing = $_POST["user-verticals$i"];
-            if(!empty($jmailing)) {
-                if($jobmailings === "") {
-                    $jobmailings = $jmailing;
-                } else {
-                    $jobmailings = $jobmailings . ", " . $jmailing;
-                }
-            }
-            if(!empty($vmailing)) {
-                if($vertmailings === "") {
-                    $vertmailings = $vmailing;
-                } else {
-                    $vertmailings = $vertmailings . ", " . $vmailing;
-                }
-            }
-        }
+        //Set up job mailings
+        $jobMailings = getMailing($softwareJobs);
+
+        //Set up vertical mailings
+        $vertMailings = getMailing($industryVerticals);
+
 
         //Combine the mailings
-        if($jobmailings === "") {
-            if($vertmailings === "") {
-                $combinemailings = "";
+        if($jobMailings === "") {
+            if($vertMailings === "") {
+                $combineMailings = "";
             } else {
-                $combinemailings = $vertmailings;
+                $combineMailings = $vertMailings;
             }
-        } else if ($vertmailings === "") {
-            $combinemailings = $jobmailings;
+        } else if ($vertMailings === "") {
+            $combineMailings = $jobMailings;
         } else {
-            $combinemailings = $jobmailings . ", " . $vertmailings;
+            $combineMailings = $jobMailings . ", " . $vertMailings;
         }
 
-        //Validate the data
-        if ($combinemailings === "") {
-            //Data is invalid
-            echo "Please fill a mailing";
-        } else {
-            //Data is valid
-            $f3->set('SESSION.userMailings', $combinemailings);
-            //echo $combinemailings;
-            //Redirect to the summary route
-            $f3->reroute("summary");
+        //Set session variable
+        $f3->set('SESSION.userMailings', $combineMailings);
+        //Redirect to the summary route
+        $f3->reroute("summary");
         }
-    }
-
-    // Get the data from the model
-    // add it to the F3 hive
-    $f3->set('jobs', getSoftwareJobs());
-    $f3->set('industryVerticals', getIndustryVerticals());
 
     // Render a view page
     $view = new Template();
