@@ -18,7 +18,7 @@ function validExperience($years) {
     return in_array($years, getYears());
 }
 
-//checks if phone number above 9 characters and bellow 12
+//checks if phone number is a NUMBER above 9 characters and bellow 12
 function validPhone($phone) {
     return is_numeric($phone) && strlen(trim($phone)) < 13 && strlen(trim($phone)) > 8;
 }
@@ -27,7 +27,6 @@ function validPhone($phone) {
 function validEmail($email) {
     return filter_var(trim($email), FILTER_VALIDATE_EMAIL);
 }
-
 
 /**
  * Extracts the mailing from the jobs provided and checks if it's provided from the data-layer
