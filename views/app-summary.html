@@ -11,29 +11,33 @@
                 <thead></thead>
                 <tbody>
                 <tr>
-                    <th>Name: {{@SESSION.userFirstName}} {{@SESSION.userLastName}}</th>
+                    <th>Name: {{@SESSION.applicant->getFname()}} {{@SESSION.applicant->getLname()}}</th>
                 </tr>
                 <tr>
-                    <th>Email: {{@SESSION.userEmail}}</th>
+                    <th>Email: {{@SESSION.applicant->getEmail()}}</th>
                 </tr>
                 <tr>
-                    <th>State: {{@SESSION.userState}}</th>
+                    <th>State: {{@SESSION.applicant->getState()}}</th>
                 </tr>
                 <tr>
-                    <th>Phone: {{@SESSION.userPhone}}</th>
+                    <th>Phone: {{@SESSION.applicant->getPhone()}}</th>
                 </tr>
                 <tr>
-                    <th>Github link: {{@SESSION.userGithub}}</th>
+                    <th>Github link: {{@SESSION.applicant->getGithub()}}</th>
                 </tr>
                 <tr>
-                    <th>Experience: {{@SESSION.userYears}} years</th>
+                    <th>Experience: {{@SESSION.applicant->getExperience()}} years</th>
                 </tr>
                 <tr>
-                    <th>Willing to Relocate: {{@SESSION.userRelocate}}</th>
+                    <th>Willing to Relocate: {{@SESSION.applicant->getRelocate()}}</th>
                 </tr>
-                <tr>
-                    <th>Mailings: {{@SESSION.userMailings}}</th>
-                </tr>
+                <check if="{{get_class(@SESSION.applicant) == 'Applicant_Subscribed'}}">
+                    <tr>
+                        <th>Mailings:
+                            {{@SESSION.applicant->getSelectionsJobs()}},
+                            {{@SESSION.applicant->getSelectionsVerticals()}}</th>
+                    </tr>
+                </check>
                 </tbody>
             </table>
         </div>

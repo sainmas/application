@@ -1,8 +1,7 @@
 <?php
 
 // 328/pets/index.php
-// Start session
-session_start();
+
 
 // Turn on error reporting
 ini_set('display_errors', 1);
@@ -10,6 +9,9 @@ error_reporting(E_ALL);
 
 // Require autoload.php
 require_once ('vendor/autoload.php');
+
+// Start session
+session_start();
 
 // Instantiate the F3 base class
 $f3 = Base::instance();

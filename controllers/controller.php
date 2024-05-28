@@ -53,13 +53,14 @@ class Controller
                 $this->_f3->set('errors["userPhone"]', 'Please enter a valid phone number');
             }
 
-
             //Add the data to the session array
-            $this->_f3->set('SESSION.userFirstName', $fname);
-            $this->_f3->set('SESSION.userLastName', $lname);
-            $this->_f3->set('SESSION.userEmail', $email);
-            $this->_f3->set('SESSION.userState', $state);
-            $this->_f3->set('SESSION.userPhone', $phone);
+            if ($_POST['mailing-signup']) {
+                $applicant_Subscribed = New Applicant_Subscribed($fname, $lname, $email, $state, $phone);
+                $this->_f3->set('SESSION.applicant', $applicant_Subscribed);
+            } else {
+                $applicant = New Applicant($fname, $lname, $email, $state, $phone);
+                $this->_f3->set('SESSION.applicant', $applicant);
+            }
 
             //Redirect to the experience route
             if (empty($this->_f3->get('errors'))) {
@@ -93,15 +94,17 @@ class Controller
                 $this->_f3->set('errors["userYears"]', 'Please select an option');
             }
 
-            //Set session variables
-            $this->_f3->set('SESSION.userBio', $bio);
-            $this->_f3->set('SESSION.userGithub', $github);
-            $this->_f3->set('SESSION.userYears', $years);
-            $this->_f3->set('SESSION.userRelocate', $relocate);
+            //Add the data to the session array
+            $this->_f3->get('SESSION.applicant')->setBio($bio);
+            $this->_f3->get('SESSION.applicant')->setGithub($github);
+            $this->_f3->get('SESSION.applicant')->setExperience($years);
+            $this->_f3->get('SESSION.applicant')->setRelocate($relocate);
 
-            //Redirect to the mailing route
-            if(empty($this->_f3->get('errors'))) {
+            //Redirect to the mailing route if selected
+            if (get_class($this->_f3->get('SESSION.applicant')) == "Applicant_Subscribed") {
                 $this->_f3->reroute('apply3');
+            } else {
+                $this->_f3->reroute('summary');
             }
         }
 
@@ -134,7 +137,7 @@ class Controller
 
 
             //Combine the mailings
-            if($jobMailings === "") {
+            /*if($jobMailings === "") {
                 if($vertMailings === "") {
                     $combineMailings = "";
                 } else {
@@ -144,10 +147,11 @@ class Controller
                 $combineMailings = $jobMailings;
             } else {
                 $combineMailings = $jobMailings . ", " . $vertMailings;
-            }
+            }*/
 
             //Set session variable
-            $this->_f3->set('SESSION.userMailings', $combineMailings);
+            $this->_f3->get('SESSION.applicant')->setSelectionsJobs($jobMailings);
+            $this->_f3->get('SESSION.applicant')->setSelectionsVerticals($vertMailings);
             //Redirect to the summary route
             $this->_f3->reroute("summary");
         }
